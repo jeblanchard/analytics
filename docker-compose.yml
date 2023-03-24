@@ -1,0 +1,9 @@
+version: "3.9"
+services:
+  web-app:
+    image: node-docker
+  postgres:
+    image: "postgres"
+    environment:
+      POSTGRES_PASSWORD: password
+      PGDATA: ./data/
