@@ -2,6 +2,7 @@
   "name": "geo-tool",
   "version": "1.0.0",
   "dependencies": {
+    "@supercharge/request-ip": "^1.2.0",
     "pg": "^8.10.0"
   }
 }
