@@ -18,7 +18,8 @@ services:
       PGDATA: /data/
     volumes:
       - site-data:/data/
-
+    ports:
+      - "5432:5432"
 
 volumes:
   site-data:

@@ -4,5 +4,8 @@
   "dependencies": {
     "@supercharge/request-ip": "^1.2.0",
     "pg": "^8.10.0"
+  },
+  "scripts": {
+    "build-start": "docker compose build && docker compose up"
   }
 }
