@@ -1,4 +1,4 @@
-FROM mhart/alpine-node:6.10
+FROM --platform=linux/amd64 node:18-alpine
 
 ENV NODE_ENV=production
 
