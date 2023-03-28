@@ -1,3 +1,5 @@
+console.log('service starting')
+
 const storeRequestInfo = require('./requestInfoCollection.js')
 
 function requestListener(request, response) {

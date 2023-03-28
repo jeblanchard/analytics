@@ -10,6 +10,7 @@ services:
       PGPASSWORD: password
     ports:
       - "3000:3000"
+    image: "jeblanchard/personal-website:analytics"
 
   postgres:
     image: "postgres"
