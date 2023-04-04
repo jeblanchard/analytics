@@ -1,6 +1,6 @@
 version: "3.9"
 services:
-  web-app:
+  analytics:
     build: .
     environment:
       PGHOST: postgres
@@ -12,7 +12,7 @@ services:
       - "3000:3000"
     image: "jeblanchard/personal-website:analytics"
 
-  postgres:
+  storage:
     image: "postgres"
     environment:
       POSTGRES_PASSWORD: password
