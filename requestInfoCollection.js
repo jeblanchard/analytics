@@ -17,10 +17,10 @@ module.exports =  function storeRequestInformation(request) {
 
     function queryCallback(err, result) {
         if (err) {
-            console.error('Error executing query', err.stack)
+            console.error('Error executing query:', err.stack)
             return
         }
-        console.log('insert visit query was successful')
+        console.log('Successfully saved visit: ', result)
     }
 
     Db.query(insertVisitQuery, [], queryCallback)

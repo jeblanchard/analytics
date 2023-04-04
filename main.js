@@ -4,8 +4,8 @@ const storeRequestInfo = require('./requestInfoCollection.js')
 
 function requestListener(request, response) {
     storeRequestInfo(request)
-    response.end('Welcome')
-    console.log('got request')
+    response.end()
+    console.log('received request')
 }
 
 const http = require('http');
