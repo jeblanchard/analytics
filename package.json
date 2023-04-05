@@ -1,5 +1,5 @@
 {
-  "name": "geo-tool",
+  "name": "analytics",
   "version": "1.0.0",
   "dependencies": {
     "@supercharge/request-ip": "^1.2.0",
@@ -7,6 +7,7 @@
   },
   "scripts": {
     "build-start": "docker compose build && docker compose up",
-    "add-current-db-to-build": "bash ./scripts/add-current-dump-to-build"
+    "add-current-db-to-build": "bash ./scripts/add-current-dump-to-build",
+    "bring-down": "docker compose down"
   }
 }

@@ -1,9 +1,15 @@
 const storeRequestInfo = require('./requestInfoCollection.js')
 
 function requestListener(request, response) {
-    storeRequestInfo(request)
+    console.log('Received request')
+
+    const storeRequestErr = storeRequestInfo(request)
+    if (storeRequestErr) {
+        console.log("entered this mf")
+        response.statusCode = 500
+    }
+
     response.end()
-    console.log('received request')
 }
 
 const http = require('http');

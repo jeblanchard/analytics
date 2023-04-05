@@ -7,7 +7,9 @@ function getCurrentUTCDate() {
 const Db = require('./db/index')
 const RequestIp = require('@supercharge/request-ip')
 
-module.exports =  function storeRequestInformation(request) {
+module.exports = storeRequestInformation
+
+async function storeRequestInformation(request) {
     const clientIp = RequestIp.getClientIp(request)
     const receivedAt = getCurrentUTCDate()
 
@@ -15,13 +17,20 @@ module.exports =  function storeRequestInformation(request) {
         `INSERT INTO visits (client_ip_address, time_of_visit) 
         VALUES (\'${clientIp}\', \'${receivedAt}\');`
 
+    let wrappedErr
     function queryCallback(err, result) {
         if (err) {
-            console.error('Error executing query:', err.stack)
-            return
+            wrappedErr = new Error(
+                'Could not execute query',
+                {cause: err}
+            )
+            console.error(wrappedErr.stack)
+        } else {
+            console.log('Successfully saved site visit')
         }
-        console.log('Successfully saved visit: ', result)
     }
 
-    Db.query(insertVisitQuery, [], queryCallback)
+    await Db.query(insertVisitQuery, [], queryCallback)
+
+    return wrappedErr
 }

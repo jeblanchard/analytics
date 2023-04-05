@@ -3,9 +3,9 @@ services:
   analytics:
     build: .
     environment:
-      PGHOST: postgres
+      PGHOST: storage
       PGPORT: 5432
-      PGDATABASE: site-statistics
+      PGDATABASE: analytics
       PGUSER: postgres
       PGPASSWORD: password
     ports:
@@ -17,10 +17,5 @@ services:
     environment:
       POSTGRES_PASSWORD: password
       PGDATA: /data/
-    volumes:
-      - site-data:/data/
     ports:
       - "5432:5432"
-
-volumes:
-  site-data:
