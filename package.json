@@ -6,8 +6,9 @@
     "pg": "^8.10.0"
   },
   "scripts": {
-    "build-start": "docker compose build && docker compose up",
-    "add-current-db-to-build": "bash ./scripts/add-current-dump-to-build",
-    "bring-down": "docker compose down"
+    "build-start": "bash scripts/build-start",
+    "add-current-db-to-build": "bash scripts/save-current-dump",
+    "bring-down": "docker compose down",
+    "run-all-tests": ""
   }
 }

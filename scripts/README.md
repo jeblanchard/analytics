@@ -1,0 +1,1 @@
+These scripts are meant to be invoked by `npm`. See the project's `package.json` file for how these are used.

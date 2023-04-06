@@ -12,4 +12,3 @@ const successCallback = (res) => {
 }
 
 http.get('http://localhost:3000/', successCallback)
-

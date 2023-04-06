@@ -1,0 +1,13 @@
+#! /bin/bash
+
+# relative to project's root
+host_dump_location="./data/cluster_dump"
+container_dump_location="./cluster_dump"
+
+docker compose cp $host_dump_location storage:$container_dump_location
+
+secs_to_wait=5
+printf "Waiting %s seconds for storage container to be ready" $secs_to_wait
+sleep $secs_to_wait
+
+docker compose exec storage psql -U postgres -f $container_dump_location

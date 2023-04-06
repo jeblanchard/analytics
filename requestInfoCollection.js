@@ -18,15 +18,12 @@ async function storeRequestInformation(request) {
         VALUES (\'${clientIp}\', \'${receivedAt}\');`
 
     let wrappedErr
-    function queryCallback(err, result) {
+    function queryCallback(err) {
         if (err) {
             wrappedErr = new Error(
                 'Could not execute query',
                 {cause: err}
             )
-            console.error(wrappedErr.stack)
-        } else {
-            console.log('Successfully saved site visit')
         }
     }
 
