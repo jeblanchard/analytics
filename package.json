@@ -9,6 +9,6 @@
     "build-start": "bash scripts/build-start",
     "add-current-db-to-build": "bash scripts/save-current-dump",
     "bring-down": "docker compose down",
-    "run-all-tests": ""
+    "publish": "docker compose push analytics"
   }
 }
