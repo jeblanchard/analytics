@@ -3,6 +3,8 @@ services:
   analytics:
     build: .
     environment:
+      NODE_ENV: production
+      PORT: 3000
       PGHOST: storage
       PGPORT: 5432
       PGDATABASE: analytics

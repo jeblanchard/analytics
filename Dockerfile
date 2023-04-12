@@ -1,7 +1,5 @@
 FROM --platform=linux/amd64 node:18-alpine
 
-ENV NODE_ENV=production
-
 WORKDIR .
 
 COPY ["package.json", "package-lock.json*", "./"]

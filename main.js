@@ -2,6 +2,7 @@ const storeRequestInfo = require('./requestInfoCollection.js')
 
 function requestListener(request, response) {
     console.log('Received request')
+    console.log(request)
 
     storeRequestInfo(request).then((err) => {
         if (err) {
@@ -18,7 +19,7 @@ function requestListener(request, response) {
 const http = require('http');
 const server = http.createServer(requestListener);
 
-const port = 3000;
+const port = process.env.PORT;
 
 server.listen(port, () => {
     console.log(`Server running`);
