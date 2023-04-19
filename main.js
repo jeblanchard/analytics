@@ -1,19 +1,24 @@
-const storeRequestInfo = require('./requestInfoCollection.js')
+const dataLake = require('./storage/data-lake/data-lake-client.js')
 
-function requestListener(request, response) {
-    console.log('Received request')
-    console.log(request)
+const RequestIp = require('@supercharge/request-ip')
+async function requestListener(request, response) {
+    const requestIp = RequestIp.getClientIp(request)
+    if (!requestIp) {
+        throw new Error('Could not collect')
+    }
+    console.log(`Received request from ${requestIp}`)
 
-    storeRequestInfo(request).then((err) => {
-        if (err) {
-            response.statusCode = 500
-            const wrappedErr = new Error('Could not store request info', {cause: err})
-            console.log(wrappedErr)
-        }
-    })
+    response.setHeader('Access-Control-Allow-Origin', '*')
+
+    try {
+        await dataLake.saveRequestToDataLake(request)
+    } catch (err) {
+        const errMsg = `Could not store request info`
+        throw new Error(errMsg, {cause: err})
+    }
 
     response.end()
-    console.log('Responded to request')
+    console.log(`Responded to request from ${requestIp}`)
 }
 
 const http = require('http');

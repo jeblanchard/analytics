@@ -1,0 +1,1 @@
+Where all things concerning the service's storage mechanisms live.

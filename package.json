@@ -2,6 +2,7 @@
   "name": "analytics",
   "version": "1.0.0",
   "dependencies": {
+    "@google-cloud/storage": "^6.9.5",
     "@supercharge/request-ip": "^1.2.0",
     "pg": "^8.10.0"
   },
@@ -9,6 +10,6 @@
     "build-start": "bash scripts/build-start",
     "add-current-db-to-build": "bash scripts/save-current-dump",
     "bring-down": "docker compose down",
-    "publish": "docker compose push analytics"
+    "publish-to-docker": "docker compose push analytics"
   }
 }

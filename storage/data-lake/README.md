@@ -1,0 +1,1 @@
+This is where configuration for the service's data lake is stored.
