@@ -9,11 +9,16 @@ async function saveRequestToDataLake(request) {
     }
 }
 
+const { createFileNameForSiteVisit } = require('../data-lake/utilities/filename-creator')
 async function saveToCorrectLake(request) {
     if (process.env.DATA_LAKE_ENV === 'local') {
-        await localStorage.saveToLocalStorage(request)
+        const destFileName = createFileNameForSiteVisit()
+        const destFilePath = `./data/test/temp/${destFileName}`
+        await localStorage.saveToLocalStorage(request, destFilePath)
     } else if (process.env.DATA_LAKE_ENV === 'production') {
         await gCloud.uploadSiteVisitToDataLake(request)
+    } else {
+        throw new Error('DATA_LAKE_ENV not set.')
     }
 }
 

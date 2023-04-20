@@ -1,7 +1,7 @@
 function createFileNameForSiteVisit() {
     const currentUnixTime = Date.now()
     const nonce = createNonce()
-    const fileType = 'json'
+    const fileType = 'txt'
 
     return `site-visit-${currentUnixTime}-${nonce}.${fileType}`
 }

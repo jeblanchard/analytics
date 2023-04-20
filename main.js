@@ -3,10 +3,11 @@ const dataLake = require('./storage/data-lake/data-lake-client.js')
 const RequestIp = require('@supercharge/request-ip')
 async function requestListener(request, response) {
     const requestIp = RequestIp.getClientIp(request)
-    if (!requestIp) {
-        throw new Error('Could not collect')
+    if (requestIp) {
+        console.log(`Received request from ${requestIp}`)
+    } else {
+        console.log('Received address but could not get IP.')
     }
-    console.log(`Received request from ${requestIp}`)
 
     response.setHeader('Access-Control-Allow-Origin', '*')
 
