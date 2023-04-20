@@ -1,6 +1,7 @@
 const dataLake = require('./storage/data-lake/data-lake-client.js')
 
 const RequestIp = require('@supercharge/request-ip')
+const { storeRequestIpAndTimeInDb } = require('./requestInfoCollection')
 async function requestListener(request, response) {
     const requestIp = RequestIp.getClientIp(request)
     if (requestIp) {
@@ -14,7 +15,14 @@ async function requestListener(request, response) {
     try {
         await dataLake.saveRequestToDataLake(request)
     } catch (err) {
-        const errMsg = `Could not store request info`
+        const errMsg = `Could not save request info to data lake.`
+        throw new Error(errMsg, {cause: err})
+    }
+
+    try {
+        await storeRequestIpAndTimeInDb(request)
+    } catch (err) {
+        const errMsg = 'Could not save request IP and time to DB.'
         throw new Error(errMsg, {cause: err})
     }
 

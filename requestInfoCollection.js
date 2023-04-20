@@ -1,15 +1,11 @@
-function getCurrentUTCDate() {
-    const milliSecondsSinceEpoch = Date.now()
-    const localDate = new Date(milliSecondsSinceEpoch)
-    return localDate.toUTCString()
-}
-
 const Db = require('./storage/database')
 const RequestIp = require('@supercharge/request-ip')
 
-module.exports = storeRequestInformation
+module.exports = {
+    storeRequestIpAndTimeInDb
+}
 
-async function storeRequestInformation(request) {
+async function storeRequestIpAndTimeInDb(request) {
     const clientIp = RequestIp.getClientIp(request)
     const receivedAt = getCurrentUTCDate()
 
@@ -18,4 +14,10 @@ async function storeRequestInformation(request) {
         VALUES (\'${clientIp}\', \'${receivedAt}\');`
 
     await Db.query(insertVisitQuery, [])
+}
+
+function getCurrentUTCDate() {
+    const milliSecondsSinceEpoch = Date.now()
+    const localDate = new Date(milliSecondsSinceEpoch)
+    return localDate.toUTCString()
 }

@@ -1,5 +1,5 @@
 const gCloud = require('./clients/google-cloud')
-const localStorage = require('./clients/local-storage')
+const localStorage = require('./clients/temp-local')
 
 async function saveRequestToDataLake(request) {
     try {
@@ -9,12 +9,12 @@ async function saveRequestToDataLake(request) {
     }
 }
 
-const { createFileNameForSiteVisit } = require('../data-lake/utilities/filename-creator')
+const { createFileNameForSiteVisit } = require('./utilities/site-visits')
 async function saveToCorrectLake(request) {
     if (process.env.DATA_LAKE_ENV === 'local') {
         const destFileName = createFileNameForSiteVisit()
         const destFilePath = `./data/test/temp/${destFileName}`
-        await localStorage.saveToLocalStorage(request, destFilePath)
+        await localStorage.tempSaveToLocalStorage(request, destFilePath)
     } else if (process.env.DATA_LAKE_ENV === 'production') {
         await gCloud.uploadSiteVisitToDataLake(request)
     } else {

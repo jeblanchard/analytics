@@ -4,12 +4,13 @@ module.exports = {
     uploadSiteVisitToDataLake,
 }
 
-const { createFileNameForSiteVisit } = require('../utilities/filename-creator')
+const { createFileNameForSiteVisit, getDataFromRequest } = require('../utilities/site-visits')
 async function uploadSiteVisitToDataLake(request) {
     const destFileName = createFileNameForSiteVisit();
+    const data = getDataFromRequest(request)
 
     try {
-        await uploadFromMemory(destFileName, request.toString())
+        await uploadFromMemory(destFileName, getDataFromRequest())
     } catch (err) {
         throw new Error('Could not upload request from memory', {cause: err})
     }

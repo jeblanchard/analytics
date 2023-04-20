@@ -19,6 +19,5 @@ services:
     image: "postgres"
     environment:
       POSTGRES_PASSWORD: password
-      PGDATA: /data/
     ports:
       - "5432:5432"
