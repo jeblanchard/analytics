@@ -1,11 +1,10 @@
-module.exports = {
-    tempSaveToLocalStorage
-}
-
 const fsPromises = require('node:fs/promises')
 const siteVisits = require('../utilities/site-visits')
-const {rm} = require("node:fs/promises");
-async function tempSaveToLocalStorage(request, destFilePath) {
+const { getUniqueSiteVisitFileName } = require('../utilities/site-visits')
+const destFileName = getUniqueSiteVisitFileName()
+const destFilePath = `./data/test/temp/${destFileName}`
+
+async function saveToLocalFileSystem(request) {
     const data = siteVisits.getDataFromRequest(request)
     try {
         const fileHandle = await fsPromises.open(destFilePath, 'a+')
@@ -15,11 +14,9 @@ async function tempSaveToLocalStorage(request, destFilePath) {
     } catch (err) {
         throw new Error('Could not save to local file system', {cause: err})
     }
+}
 
-    try {
-        await rm(destFilePath)
-        console.log('Cleaned up files.')
-    } catch (err) {
-        throw new Error('Could not clean up test.', {cause: err})
-    }
+module.exports = {
+    saveToLocalFileSystem,
+    destFilePath
 }

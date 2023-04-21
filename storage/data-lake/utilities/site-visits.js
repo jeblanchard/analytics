@@ -1,9 +1,11 @@
-function createFileNameForSiteVisit() {
+const fileNamePrefix = 'site-visit'
+
+function getUniqueSiteVisitFileName() {
     const currentUnixTime = Date.now()
     const nonce = createNonce()
     const fileType = 'txt'
 
-    return `site-visit-${currentUnixTime}-${nonce}.${fileType}`
+    return `${fileNamePrefix}-${currentUnixTime}-${nonce}.${fileType}`
 }
 
 function createNonce() {
@@ -16,6 +18,7 @@ function getDataFromRequest(request) {
 }
 
 module.exports = {
-    createFileNameForSiteVisit,
-    getDataFromRequest
+    getUniqueSiteVisitFileName,
+    getDataFromRequest,
+    fileNamePrefix
 }

@@ -4,9 +4,9 @@ module.exports = {
     uploadSiteVisitToDataLake,
 }
 
-const { createFileNameForSiteVisit, getDataFromRequest } = require('../utilities/site-visits')
+const { getUniqueSiteVisitFileName, getDataFromRequest } = require('../utilities/site-visits')
 async function uploadSiteVisitToDataLake(request) {
-    const destFileName = createFileNameForSiteVisit();
+    const destFileName = getUniqueSiteVisitFileName();
     const data = getDataFromRequest(request)
 
     try {
