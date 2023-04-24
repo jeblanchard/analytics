@@ -1,4 +1,3 @@
-const {Storage} = require('@google-cloud/storage');
 
 module.exports = {
     uploadSiteVisitToDataLake,
@@ -16,7 +15,11 @@ async function uploadSiteVisitToDataLake(request) {
     }
 }
 
+const { Storage } = require('@google-cloud/storage')
+const projectId = 'personal-website-382920';
+const cloudStorage = new Storage({projectId});
 const bucketName = process.env.GCLOUD_BUCKET_NAME
+
 async function uploadFromMemory(destFileName, contents) {
     await cloudStorage.bucket(bucketName).file(destFileName).save(contents);
 
@@ -24,5 +27,3 @@ async function uploadFromMemory(destFileName, contents) {
         `${destFileName} uploaded to ${bucketName}.`
     );
 }
-
-const cloudStorage = new Storage();

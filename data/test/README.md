@@ -1,1 +1,0 @@
-This is where data used in and for tests are stored.

@@ -10,7 +10,8 @@ services:
       PGDATABASE: analytics
       PGUSER: postgres
       PGPASSWORD: password
-      DATA_LAKE_ENV: local
+      DATA_LAKE_ENV: production
+      GCLOUD_BUCKET_NAME: site-visits-bucket
     ports:
       - "3000:3000"
     image: "jeblanchard/personal-website:analytics"

@@ -12,9 +12,7 @@ async function saveRequestToDataLake(request) {
 const { getUniqueSiteVisitFileName } = require('./utilities/site-visits')
 async function saveToCorrectLake(request) {
     if (process.env.DATA_LAKE_ENV === 'local') {
-        const destFileName = getUniqueSiteVisitFileName()
-        const destFilePath = `./data/test/temp/${destFileName}`
-        await localStorage.saveToLocalFileSystem(request, destFilePath)
+        await localStorage.saveToLocalFileSystem(request)
     } else if (process.env.DATA_LAKE_ENV === 'production') {
         await gCloud.uploadSiteVisitToDataLake(request)
     } else {
