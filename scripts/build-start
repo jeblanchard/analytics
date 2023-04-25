@@ -5,7 +5,3 @@ docker compose down
 docker compose build
 
 docker compose up -d
-
-bash ./scripts/load-dump-into-db
-
-printf "Successfully built and started"

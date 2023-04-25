@@ -9,7 +9,7 @@ async function uploadSiteVisitToDataLake(request) {
     const data = getDataFromRequest(request)
 
     try {
-        await uploadFromMemory(destFileName, getDataFromRequest())
+        await uploadFromMemory(destFileName, data)
     } catch (err) {
         throw new Error('Could not upload request from memory', {cause: err})
     }

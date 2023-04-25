@@ -2,7 +2,7 @@ const fsPromises = require('node:fs/promises')
 const siteVisits = require('../utilities/site-visits')
 const { getUniqueSiteVisitFileName } = require('../utilities/site-visits')
 const destFileName = getUniqueSiteVisitFileName()
-const destFilePath = `./data/${destFileName}`
+const destFilePath = `./test/unit/data/${destFileName}`
 
 async function saveToLocalFileSystem(request) {
     const data = siteVisits.getDataFromRequest(request)

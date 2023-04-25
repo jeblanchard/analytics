@@ -1,1 +1,0 @@
-The files here should are used to populate the app's connected database(s).

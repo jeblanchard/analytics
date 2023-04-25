@@ -5,19 +5,19 @@ services:
     environment:
       NODE_ENV: production
       PORT: 3000
-      PGHOST: storage
+      PGHOST: database
       PGPORT: 5432
       PGDATABASE: analytics
       PGUSER: postgres
       PGPASSWORD: password
-      DATA_LAKE_ENV: production
+      DATA_LAKE_ENV: local
       GCLOUD_BUCKET_NAME: site-visits-bucket
     ports:
       - "3000:3000"
     image: "jeblanchard/personal-website:analytics"
 
-  storage:
-    image: "postgres"
+  database:
+    image: "jeblanchard/personal-website:my-postgres"
     environment:
       POSTGRES_PASSWORD: password
     ports:

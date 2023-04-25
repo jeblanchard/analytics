@@ -1,11 +1,11 @@
 const http = require("http");
 const { access, rm} = require("node:fs/promises");
-const { destFilePath } = require('../../storage/data-lake/clients/local-file-system')
-const { saveToLocalFileSystem } = require('../../storage/data-lake/clients/local-file-system')
+const { destFilePath } = require('../../storage/data-lake/client-implementations/test-local-file-system')
+const { saveToLocalFileSystem } = require('../../storage/data-lake/client-implementations/test-local-file-system')
 
 const dummyServer = http.createServer();
-dummyServer.listen('3000');
-const dummyRequest = http.request('http://localhost:3000')
+dummyServer.listen('3001');
+const dummyRequest = http.request('http://localhost:3001')
 
 async function saveRequest() {
     try {

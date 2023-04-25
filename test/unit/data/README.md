@@ -1,0 +1,1 @@
+This is where data generated during tests is stored.

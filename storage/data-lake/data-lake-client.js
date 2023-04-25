@@ -1,5 +1,5 @@
-const gCloud = require('./clients/google-cloud')
-const localStorage = require('./clients/local-file-system')
+const gCloud = require('./client-implementations/google-cloud')
+const localStorage = require('./client-implementations/test-local-file-system')
 
 async function saveRequestToDataLake(request) {
     try {
@@ -9,7 +9,6 @@ async function saveRequestToDataLake(request) {
     }
 }
 
-const { getUniqueSiteVisitFileName } = require('./utilities/site-visits')
 async function saveToCorrectLake(request) {
     if (process.env.DATA_LAKE_ENV === 'local') {
         await localStorage.saveToLocalFileSystem(request)

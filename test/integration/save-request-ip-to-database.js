@@ -2,8 +2,8 @@ const http = require("http");
 
 const RequestIp = require('@supercharge/request-ip')
 
-const {Pool} = require('pg');
-const pgClientPool = new Pool ({
+const { Pool } = require('pg');
+let pgClientPool = new Pool ({
     user: 'postgres',
     password: 'password',
     host: 'localhost',
