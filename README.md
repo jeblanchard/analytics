@@ -2,4 +2,4 @@
 
 Runs analytics on all site visits.
 
-Refer to npm's package.json file for startup.
+Refer to `npm`'s `package.json` file for startup.
