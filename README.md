@@ -1,1 +1,1 @@
-A small analtyics service for my personal website.
+A small analytics service for my personal website.
